@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\img\\avatars\\7.png"
     },
     {
+      "Id": "C:\\Users\\QuanDEV\\TestComikApp\\wwwroot\\img\\avatars\\test.jpg",
+      "PackagePath": "staticwebassets\\img\\avatars\\test.jpg"
+    },
+    {
       "Id": "C:\\Users\\QuanDEV\\TestComikApp\\wwwroot\\img\\backgrounds\\18.jpg",
       "PackagePath": "staticwebassets\\img\\backgrounds\\18.jpg"
     },

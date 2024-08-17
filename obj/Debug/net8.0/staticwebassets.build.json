@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5RK0cK8lefdzgXPQmGeJAVAGPuSX0PMHPiEgU28CTuQ=",
+  "Hash": "5np1DbWWTLLIG11Jd2HCnjueSzeA+vsiKQ/Fz/G8pAA=",
   "Source": "TestComikApp",
   "BasePath": "_content/TestComikApp",
   "Mode": "Default",
@@ -205,6 +205,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\avatars\\7.png"
+    },
+    {
+      "Identity": "C:\\Users\\QuanDEV\\TestComikApp\\wwwroot\\img\\avatars\\test.jpg",
+      "SourceId": "TestComikApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\QuanDEV\\TestComikApp\\wwwroot\\",
+      "BasePath": "_content/TestComikApp",
+      "RelativePath": "img/avatars/test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\avatars\\test.jpg"
     },
     {
       "Identity": "C:\\Users\\QuanDEV\\TestComikApp\\wwwroot\\img\\backgrounds\\18.jpg",

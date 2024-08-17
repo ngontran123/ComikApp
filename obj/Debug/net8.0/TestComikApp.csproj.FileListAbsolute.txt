@@ -119,3 +119,8 @@ C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\.eslintrc.json
+C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\.prettierrc.json
+C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\package-lock.json
+C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\package.json
+C:\Users\QuanDEV\TestComikApp\obj\Debug\net8.0\TestComikApp.sourcelink.json
