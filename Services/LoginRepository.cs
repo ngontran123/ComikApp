@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Numerics;
 using MimeKit.Cryptography;
+using TestComikApp.IRepository;
 using System.Text.RegularExpressions;
 
 namespace TestComikApp.Service;
@@ -29,7 +30,7 @@ public class LoginRepository:ILoginService
     {
         return true;        
     }
-    return false;
+    return false;    
  }
 
   public async Task<bool> CheckExistUser(string username,string password)
@@ -59,7 +60,7 @@ public class LoginRepository:ILoginService
     var is_existed=await _dbb.Users.FirstOrDefaultAsync(p=>p.Password==hashed_password);
     if(is_existed!=null)
     {
-        return true;        
+        return true;                
     }
     return false;
  }

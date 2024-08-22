@@ -17,14 +17,15 @@ html {
   min-height: 100%;
 }
 
-body {
+body 
+{
   margin-bottom: 60px;
 }
 
 .card-title
 {
-  font-size: 12px;
+  font-size:medium;
   font-weight: bolder;
-  color: greenyellow;
+  color: black;
 }
 

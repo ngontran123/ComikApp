@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using DotNetEnv;
 using System.Text;
-
+using TestComikApp.IRepository;
 var builder = WebApplication.CreateBuilder(args);
 
 

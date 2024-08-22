@@ -5,6 +5,7 @@ using TestComikApp.Models;
 using TestComikApp.Db;
 using TestComikApp.Service;
 using Org.BouncyCastle.Tls;
+using TestComikApp.IRepository;
 
 namespace TestComikApp.Controllers;
 
@@ -31,6 +32,7 @@ public class LoginController : Controller
 [HttpGet]
 public IActionResult Index()
 {
+ 
  return View();
 }
 
@@ -78,6 +80,7 @@ public IActionResult Forgotpassword()
     [HttpPost]
     public async Task<IActionResult> Index(LoginModel user)
     {
+
     if(ModelState.IsValid)
     {
     string username=user.UserName;

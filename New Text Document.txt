@@ -1,0 +1,37 @@
+Comik table:
+-ID
+-Comik Name
+-Date-Added
+-Chapters
+-Status
+
+
+Comik_Author-detail:
+-Id
+-Comik-Id
+-Author-Id
+
+Author-table:
+-ID
+-Author-name
+-Description
+
+Genres:
+-Id
+-Genre_Name
+
+comik_genres-detail:
+-Id
+-Comik-Id
+-Genres-Id
+
+
+Pages:
+-Id
+-Page_Name
+-Comik_Id
+
+
+
+
+
