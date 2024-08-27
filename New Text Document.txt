@@ -4,6 +4,7 @@ Comik table:
 -Date-Added
 -Chapters
 -Status
+-Description
 
 
 Comik_Author-detail:
