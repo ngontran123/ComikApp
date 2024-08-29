@@ -42,7 +42,7 @@ Chapter:
 -Id
 -Chapter_no
 -Comic_Id
--Page
+-Date_Added
 
 Chapter_Detail:
 -Id
