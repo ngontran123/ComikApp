@@ -48,6 +48,7 @@ public class LoginRepository:ILoginService
   public async Task<bool> CheckExistEmail(string email)
  {
     var is_existed=await _dbb.Users.FirstOrDefaultAsync(p=>p.Email==email);
+
     if(is_existed!=null)
     {
         return true;        
@@ -62,7 +63,7 @@ public class LoginRepository:ILoginService
     {
         return true;                
     }
-    return false;
+    return false;        
  }
 
 
@@ -76,7 +77,7 @@ public class LoginRepository:ILoginService
     string phone_number=user.Phonenumber;
     string gender=user.Gender;
     string avatar=user.Avatar;
-    
+
     bool checkExist=await CheckExist(username);
     
     if(checkExist)
@@ -85,6 +86,7 @@ public class LoginRepository:ILoginService
         return res;
     }
     bool checkExistMail = await CheckExistEmail(email);
+    
     if(checkExistMail)
     {
         res=2;
@@ -119,7 +121,7 @@ public async Task<int> UpdateUser(string email,string password,string new_passwo
     if(user==null)
     {
         res=1;
-        return res;
+        return res;        
     }
     else
     {  
@@ -137,7 +139,7 @@ public async Task<int> UpdateUser(string email,string password,string new_passwo
     if(check_match.Success)
     {
      string new_hashed_password=this._support_service.AddSha256(new_password);
-      user.Password=new_hashed_password;
+     user.Password=new_hashed_password; 
       this._dbb.Users.Update(user);
       await this._dbb.SaveChangesAsync();
       }

@@ -9,12 +9,10 @@ public partial class User
     /// Identifier for username
     /// </summary>
     public int Id { get; set; }
-
     /// <summary>
     /// Username
     /// </summary>
     public string? Username { get; set; }
-
     /// <summary>
     /// Password for the user
     /// </summary>
@@ -27,4 +25,5 @@ public partial class User
     public string? Avatar { get; set; }
 
     public string? Phonenumber { get; set; }
+
 }

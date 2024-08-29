@@ -35,7 +35,7 @@ public string htmlContent(string receiver,string operating_system,string browser
     }
 
     string random_password=this._spService.generateRandomPassword();
-    
+
     htmlContent=htmlContent.Replace("{name}",receiver);
     htmlContent=htmlContent.Replace("{operating_system}",operating_system);
     htmlContent=htmlContent.Replace("{browser_name}",browser_name);

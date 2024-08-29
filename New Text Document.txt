@@ -4,6 +4,10 @@ Comik table:
 -Date-Added
 -Chapters
 -Status
+-Description
+-Views
+-Mode
+-Avatar
 
 
 Comik_Author-detail:
@@ -30,6 +34,18 @@ Pages:
 -Id
 -Page_Name
 -Comik_Id
+
+Chapter:
+-Id
+-Chapter_no
+-Comic_Id
+-Page
+
+Chapter_Detail:
+-Id
+-Chapter_Id
+-Page_No
+-Page_Path
 
 
 

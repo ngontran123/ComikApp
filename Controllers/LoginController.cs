@@ -81,23 +81,24 @@ public IActionResult Forgotpassword()
     public async Task<IActionResult> Index(LoginModel user)
     {
 
-    if(ModelState.IsValid)
-    {
-    string username=user.UserName;
-    string password=user.Password;
+    // if(ModelState.IsValid)
+    // {
+    // string username=user.UserName;
+    // string password=user.Password;
 
-    bool check_exist=await _login_repos.CheckExistUser(username,password);
-    if(check_exist)
-    { 
-        TempData["LoginFailed"]="False";
-        return RedirectToAction("Index","Login");
-    }
-    else
-    {
-        Console.WriteLine("This user is not existed yet");
-        TempData["LoginFailed"]="True";
-    }
-    }
+    // bool check_exist=await _login_repos.CheckExistUser(username,password);
+    // if(check_exist)
+    // { 
+    //     TempData["LoginFailed"]="False";
+    //     return RedirectToAction("Index","Login");
+    // }
+    // else
+    // {
+    //     Console.WriteLine("This user is not existed yet");
+    //     TempData["LoginFailed"]="True";
+    // }
+    // }
+    await this._support_service.webScrapingTesting();
         return RedirectToAction("Index","Login");
 }
 
