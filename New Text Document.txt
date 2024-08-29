@@ -5,9 +5,12 @@ Comik table:
 -Chapters
 -Status
 -Description
+<<<<<<< HEAD
 -Views
 -Mode
 -Avatar
+=======
+>>>>>>> 45a519662257201b9440e758ae7327b66a40fab9
 
 
 Comik_Author-detail:
