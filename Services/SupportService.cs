@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore.ValueGeneration;
 using MimeKit.Cryptography;
 using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
+using Castle.Components.DictionaryAdapter;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace TestComikApp.Service;
 
@@ -32,6 +34,10 @@ public class SupportService
 int latest_comik_author_item=0;
 
 int latest_comik_genre_item = 0;
+
+int latest_chapter_item=0;
+
+int latest_chapter_detail_item = 0;
 
 
      public string AddSha256(string data)
@@ -204,7 +210,7 @@ public string standardAuthorName(string author)
     return standard_author_name.TrimStart().TrimEnd();
 }
 
-public async Task addAuthorTable(IPage page,IReadOnlyList<ILocator> line_contents)
+public async Task addAuthorTable(IReadOnlyList<ILocator> line_contents)
 { 
 
  var line_content=line_contents[1];
@@ -235,9 +241,9 @@ public async Task addAuthorTable(IPage page,IReadOnlyList<ILocator> line_content
  }
 } 
 
-public async Task addChapterDetail(IPage page)
+public async Task addChapterDetail(IPage page,int chapter_id,string filename)
 {
-
+    
     var scroll_script=@"
     const autoScroll = async () => {
          const scrollStep = 3000; 
@@ -255,6 +261,7 @@ public async Task addChapterDetail(IPage page)
         }
         autoScroll();
     ";
+    await Task.Delay(5000);
    await page.EvaluateAsync(scroll_script);
    int count_nums=0;
    var images=await page.Locator(".image-vertical").AllAsync();
@@ -262,8 +269,11 @@ public async Task addChapterDetail(IPage page)
   if(images!=null)
   {
    foreach(var image in images)
-   {
+   {  count_nums+=1;
     var image_href=await image.GetAttributeAsync("src");
+    this.latest_chapter_detail_item+=1;
+    string data_detail=$"{latest_chapter_detail_item},{chapter_id},{count_nums},{this.handleEscapedField(image_href)}";
+    this.writeCsvFile(filename,data_detail);
     Console.WriteLine(image_href);
    }
   }
@@ -346,6 +356,10 @@ public async Task webScrapingTesting()
     string comik_author_table = "comik_author.csv";
 
     string comik_genre_table = "comik_genre.csv";
+
+    string chapter_table = "chapter.csv";
+
+    string chapter_detail_table = "chapter_detail.csv";
        
     fillFullListData(comik_table,list_comik_table);
 
@@ -355,7 +369,11 @@ public async Task webScrapingTesting()
 
     fillFullListData(comik_author_table,list_comik_author_table);  
 
-    fillFullListData(comik_genre_table,list_comik_genre_table);  
+    fillFullListData(comik_genre_table,list_comik_genre_table);
+
+    fillFullListData(chapter_table,list_chapter_table);
+
+    fillFullListData(chapter_detail_table,list_chapter_detail);  
     
     using(var playwright=await Playwright.CreateAsync())
     {
@@ -363,16 +381,16 @@ public async Task webScrapingTesting()
         var browser=await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions{Headless=false});
 
         var page = await browser.NewPageAsync();
-        
-        await page.AddInitScriptAsync(@"
+
+             await page.AddInitScriptAsync(@"
             document.addEventListener('contextmenu', event => event.stopPropagation(), true);
             document.body.oncontextmenu = null;
-        ");                
-
-        await page.GotoAsync("https://mangakakalot.to/hot");
+        ");  
+                     
+        await page.GotoAsync("https://mangakakalot.to/new");
        // await page.GotoAsync("https://mangakakalot.to/read/the-first-times-lady-68337/en/chapter-1");
 
-        //await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+        await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
         //await addChapterDetail(page);                        
         var items = await page.Locator(".item").AllAsync();
@@ -387,6 +405,8 @@ public async Task webScrapingTesting()
 
         latest_comik_genre_item=getLatestId(list_comik_genre_table);
 
+        latest_chapter_item=getLatestId(list_chapter_table);
+
         Console.WriteLine("latest id:"+latest_comik_item);
 
         foreach(var item in items)
@@ -397,26 +417,49 @@ public async Task webScrapingTesting()
          
          var line_content=await page.Locator(".line-content").AllAsync();
 
-        // int val= await addComikTable(page,item,line_content,latest_comik_item);
+        int val= await addComikTable(page,item,line_content,latest_comik_item);
 
-        //  await addAuthorTable(page,line_content);
+         await addAuthorTable(page,line_content);
 
-        //  await addGenreTable(line_content);
+         await addGenreTable(line_content);
 
         await Task.Delay(2000);
-  
+         
+        var dropdown = page.Locator("#chap-lang");
+        await dropdown.ClickAsync();
+
+        var element = page.Locator("a[data-code='en'][data-type='chap']");
+
+        await element.ClickAsync();
+
          var chapters=page.Locator(".clb-ul").First;
 
-         var chaptr=await chapters.Locator(".item").CountAsync();
+         var chaptr=await chapters.Locator(".item").AllAsync();
         
-        
-        Console.WriteLine("Number of chapter:"+chaptr);
-
-
-        //  if(val==0)
-        //  {
-        //   latest_comik_item+=1;
-        //  }     
+        foreach(var chapter in chaptr)
+        {
+            var chapter_no=await chapter.Locator(".chapter-name").TextContentAsync();
+            var chapter_link=chapter.Locator("a").First;
+            string chapter_no_parse=standardString(chapter_no);
+            DateTime date_time_now=DateTime.Now;
+            string date_added = date_time_now.ToString("dd/MM/yyyy HH:mm:ss");
+            if(this.list_chapter_table.Any(chapter=>chapter[1]==chapter_no_parse && chapter[2]==latest_comik_item.ToString()))
+            {
+                break;
+            }
+            latest_chapter_item+=1;
+            string chapter_data=$"{latest_chapter_item},{chapter_no_parse},{latest_comik_item},{this.handleEscapedField(date_added)}";
+            
+            this.writeCsvFile(chapter_table,chapter_data);
+          
+            await chapter_link.ClickAsync();
+            await addChapterDetail(page,latest_chapter_item,chapter_detail_table);
+            await Task.Delay(100);
+        }
+         if(val==0)
+         {
+          latest_comik_item+=1;
+         }     
     
        // await addGenreTable(page,line_content);
          await page.GoBackAsync();
