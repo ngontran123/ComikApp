@@ -29,3 +29,31 @@ body
   color: black;
 }
 
+.custom-title
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+.custom-card-img
+{
+  transition: opacity 0.3s ease;
+}
+
+.custom-title:hover,
+.custom-title:hover .custom-card-img {
+    opacity: 0.8; /* Adjust opacity value as needed */
+}
+
+
+.custom-title:hover .card-title
+{
+  white-space:normal;
+  overflow: visible;
+}
+
+.custom-color:hover
+{
+ color:#a358b0 !important;
+}

@@ -15,9 +15,6 @@ C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\.eslin
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\.prettierrc.json
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\package-lock.json
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\package.json
-C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\TestComikApp.Test\obj\Debug\net8.0\TestComikApp.Test.sourcelink.json
-C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\TestComikApp.Test\obj\project.assets.json
-C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\TestComikApp.Test\obj\TestComikApp.Test.csproj.nuget.dgspec.json
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\.playwright\node\win32_x64\node.exe
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\.playwright\node\LICENSE
 C:\Users\QuanDEV\TestComikApp\bin\Debug\net8.0\.playwright\package\api.json

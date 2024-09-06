@@ -15,6 +15,7 @@
     <link rel="icon" type="image/x-icon" href="~/img/favicon/favicon.ico" />
     <link rel="stylesheet" href="~/vendor/css/pages/page-misc.css" />
      <link rel="stylesheet" href="~/vendor/fonts/boxicons.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,23 +26,106 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
+        
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TestComikApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                       aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between align-items-center">
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link custom-color" asp-area="" asp-controller="Home" asp-action="Index">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link custom-color" asp-area="" asp-controller="Home" asp-action="Privacy">Latest Comics</a>
                         </li>
+                        <li class="nav-item">
+                 <a class="nav-link custom-color" asp-area="" asp-controller="Home" asp-action="Privacy">Hot Comics</a>
+                        </li>
+                        <li class="nav-item">
+                <a class="nav-link custom-color" asp-area="" asp-controller="Home" asp-action="Privacy">New Comics</a>
+                        </li>
+                       <li class="nav-item">
+                        <a class="nav-link custom-color" asp-area="" asp-controller="Home" asp-action="Privacy">Completed Comics</a>
+                       </li>
                     </ul>
+          
+              <div class="navbar-nav flex-grow-1">
+                <div class="nav-item d-flex align-items-center">
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search..."
+                    aria-label="Search..."
+                  />
                 </div>
+              </div>
+            
+             <div class="navbar-nav flex-row align-items-center ms-auto">
+                       <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" id="dropdown-toggle" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="~/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" id="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="~/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-semibold d-block">John Doe</span>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="auth-login-basic.html">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+            </div>
             </div>
         </nav>
     </header>
@@ -50,7 +134,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="content-footer footer bg-footer-theme mt-auto">
               <div class="container-xxl d-flex flex-wrap justify-content-between flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
@@ -78,7 +161,40 @@
                 </div>
               </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* <script>
+    document.addEventListener('DOMContentLoaded',()=>
+    { 
+      var dropdown_button=document.getElementById("dropdown-toggle");
+      var dropdown_content= document.getElementById("dropdown-menu");
+      dropdown_button.addEventListener('click',(event)=>{
+        var isExpanded=dropdown_button.getAttribute("aria-expanded");
+        if(isExpanded=="true")
+        {
+        dropdown_button.setAttribute('aria-expanded',"false");
+        dropdown_content.style.display='none';
+        }
+        else if(isExpanded=="false")
+        {
+        dropdown_button.setAttribute("aria-expanded","true");
+        dropdown_content.style.display='block';  
+        }
+      });
+      });
+    </script> *@
+   <script src="@(Url.Content("~/lib/jquery/dist/jquery.min.js"))"></script>
+   <script src="@(Url.Content("~/vendor/js/helpers.js"))"></script>
+   <script src="@(Url.Content("~/js/config.js"))"></script>
+   <script src="@(Url.Content("~/vendor/libs/jquery/jquery.js"))"></script>
+   <script src="@(Url.Content("~/vendor/libs/popper/popper.js"))"></script>
+   <script src="@(Url.Content("~/vendor/js/bootstrap.js"))"></script>
+
+   <script src="@(Url.Content("~/js/main.js"))"></script>
+   <script src="@(Url.Content("~/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"))"></script>
+   <script src="@(Url.Content("~/vendor/js/menu.js"))"></script>
+   <script src="@(Url.Content("~/js/site.js"))"></script>
+
+
+    @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/vendor/js/helpers.js"></script>
@@ -88,7 +204,10 @@
     <script src="~/vendor/js/bootstrap.js"></script>
     <script src="~/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="~/vendor/js/menu.js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="~/js/main.js"></script> *@
+
+    @* <script async defer src="https://buttons.github.io/buttons.js"></script> *@
+   
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

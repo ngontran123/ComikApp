@@ -6,9 +6,9 @@ namespace TestComikApp.Controllers;
 
 public class NotFoundController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<NotFoundController> _logger;
 
-    public NotFoundController(ILogger<HomeController> logger)
+    public NotFoundController(ILogger<NotFoundController> logger)
     {
         _logger = logger;
     }

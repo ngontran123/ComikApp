@@ -30,7 +30,7 @@
     if(errorMessage=="True")
     {
      <div
-       class="bs-toast toast fade show bg-danger toast-placement-ex top-5 end-0"
+       class="bs-toast toast fade hide bg-danger toast-placement-ex top-5 end-0"
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
@@ -46,10 +46,17 @@
                           @errorContent
                         </div>
                       </div>
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var toastEl = document.querySelector('.toast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        </script>
                       }
         else{
           <div
-       class="bs-toast toast fade show bg- toast-placement-ex top-5 end-0"
+       class="bs-toast toast fade hide bg- toast-placement-ex top-5 end-0"
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
@@ -65,6 +72,13 @@
                          Login Success
                         </div>
                       </div>
+                        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var toastEl = document.querySelector('.toast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        </script>
         }
    }
     <div class="container-xxl">

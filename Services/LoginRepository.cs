@@ -58,14 +58,15 @@ public class LoginRepository:ILoginService
 
  public async Task<bool> CheckPassword(string password)
  {  string hashed_password=this._support_service.AddSha256(password);
+    
     var is_existed=await _dbb.Users.FirstOrDefaultAsync(p=>p.Password==hashed_password);
+    
     if(is_existed!=null)
     {
         return true;                
     }
-    return false;        
+    return false;            
  }
-
 
 
  public async Task<int> AddUser(User user)

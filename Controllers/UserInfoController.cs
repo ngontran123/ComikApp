@@ -4,24 +4,18 @@ using TestComikApp.Models;
 
 namespace TestComikApp.Controllers;
 
-public class DashboardController : Controller
+public class UserInfoController : Controller
 {
-    private readonly ILogger<DashboardController> _logger;
+    private readonly ILogger<UserInfoController> _logger;
 
-    public DashboardController(ILogger<DashboardController> logger)
+    public UserInfoController(ILogger<UserInfoController> logger)
     {
-        _logger = logger;
+        _logger = logger;        
     }
-
+   [Route("profile-data")]
     public IActionResult Index()
     {
-        return View();
-    }
-
-
-    public IActionResult Privacy()
-    {
-        return View();
+        return View();                                
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

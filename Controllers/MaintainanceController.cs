@@ -6,9 +6,9 @@ namespace TestComikApp.Controllers;
 
 public class MaintainanceController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<MaintainanceController> _logger;
 
-    public MaintainanceController(ILogger<HomeController> logger)
+    public MaintainanceController(ILogger<MaintainanceController> logger)
     {
         _logger = logger;
     }

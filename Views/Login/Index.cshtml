@@ -43,12 +43,15 @@
     if(errorMessage=="True")
     {
      <div
-       class="bs-toast toast fade show bg-danger toast-placement-ex top-5 end-0"
+       class="bs-toast toast fade hide bg-danger toast-placement-ex top-5 end-0"
        role="alert"
        aria-live="assertive"
        aria-atomic="true"
         data-bs-dismiss="toast"
-        style="cursor: pointer;"
+        style="cursor: pointer; display:block;"
+        data-delay="2000"
+         data-bs-autohide="true" 
+         data-bs-delay="3000"
              >
                         <div class="toast-header">
                           <i class="bx bx-bell me-2"></i>
@@ -56,13 +59,20 @@
                           <!--<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>-->
                         </div>
                         <div class="toast-body">
-                         Login Unsuccess
+                         Login Failed
                         </div>
                       </div>
+             <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var toastEl = document.querySelector('.toast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        </script>
                       }
         else{
           <div
-       class="bs-toast toast fade show bg- toast-placement-ex top-5 end-0"
+       class="bs-toast toast fade hide bg- toast-placement-ex top-5 end-0"
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
@@ -78,13 +88,20 @@
                          Login Success
                         </div>
                       </div>
+                      <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var toastEl = document.querySelector('.toast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        </script>
         }
    }
 
    @if(!string.IsNullOrEmpty(registerMessage))
    {  
       <div
-       class="bs-toast toast fade show bg-success toast-placement-ex top-5 end-0"
+       class="bs-toast toast fade hide bg-success toast-placement-ex top-5 end-0"
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
@@ -100,12 +117,19 @@
                          Register Success
                         </div>
                       </div>
+                        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var toastEl = document.querySelector('.toast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        </script>
         }
     
   @if(!string.IsNullOrEmpty(changePassword))
   {
         <div
-       class="bs-toast toast fade show bg-success toast-placement-ex top-5 end-0"
+       class="bs-toast toast fade hide bg-success toast-placement-ex top-5 end-0"
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
@@ -121,6 +145,13 @@
                           Change password success
                         </div>
                       </div>
+                        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var toastEl = document.querySelector('.toast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        </script>
   }
   
     <div class="container-xxl">
@@ -207,6 +238,8 @@
                     placeholder="Enter your email or username"
                     autofocus
                   />
+                <span asp-validation-for="UserName" id="username-error" class="text-danger"></span>
+
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
@@ -227,6 +260,8 @@
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
+                <span asp-validation-for="Password" id="password-error" class="text-danger"></span>
+
                 </div>
                 <div class="mb-3">
                   <div class="row">
@@ -254,11 +289,44 @@
               </p>
             </div>
           </div>
-          <!-- /Register -->
         </div>
       </div>
     </div>
-
+   <script>
+    document.getElementById("formAuthentication").addEventListener("submit",(event)=>{
+    var is_valid=true;
+    var username=document.getElementById("username").value;
+    var password=  document.getElementById("password").value;
+    if(username=="")
+    { is_valid=false;
+      document.getElementById("username-error").innerHTML="Username cannot empty";
+    }
+    
+    if(password=="")
+    { is_valid=false;
+      document.getElementById("password-error").innerHTML="Password cannot empty";
+    }
+    if(!is_valid)
+    {
+      event.preventDefault();
+    }
+    });
+    document.getElementById("username").addEventListener("keydown",(event)=>{
+      var username_error=document.getElementById("username-error").value;
+      if(username_error!="")
+      {
+        document.getElementById("username-error").innerHTML="";
+      }
+    });
+    
+    document.getElementById("password").addEventListener("keydown",(event)=>{
+      var password_errror =  document.getElementById("password-error").value;
+      if(password_errror!="")
+      {
+        document.getElementById("password-error").innerHTML="";
+      }
+    })
+   </script>
     <!-- / Content -->
 
     <!-- <div class="buy-now">
