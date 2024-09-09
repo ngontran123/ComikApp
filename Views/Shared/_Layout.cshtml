@@ -26,7 +26,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-expand-xl navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
         
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TestComikApp</a>
@@ -134,7 +134,7 @@
             @RenderBody()
         </main>
     </div>
-     <footer class="content-footer footer bg-footer-theme">
+     @* <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
                   ©
@@ -163,7 +163,7 @@
                   >
                 </div>
               </div>
-            </footer>
+            </footer> *@
 
     @* <footer class="content-footer footer bg-footer-theme mt-auto">
               <div class="container-xxl d-flex flex-wrap justify-content-between flex-md-row flex-column">
@@ -223,7 +223,8 @@
    <script src="@(Url.Content("~/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"))"></script>
    <script src="@(Url.Content("~/vendor/js/menu.js"))"></script>
    <script src="@(Url.Content("~/js/site.js"))"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,119 @@
+<div class="row">
+   <div class="card mb-3 shadow">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="~/img/avatars/test.jpg" alt="Comik Cover" class="comik-avatar w-100">
+                </div>
+                <!-- Comic Details -->
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">Manga Title</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                            <div class="line"><div class="icon-styled"><i class="bx bx-user"></i></div><div class="text-styled"><strong>Authors:</strong></div></div></li>
+                            <div class="line"><div class="icon-styled"><i class="bx bx-calendar"></i></div><div class="text-styled"><strong>Published Date:</strong> January 1, 2022</div></div></li>
+                            <li><div class="line"><div class="icon-styled"><i class="bx bx-folder"></i></div><div class="text-styled"><strong>Genres:</strong> Action, Adventure, Fantasy</div></div></li>
+                            <li><div class="line"><div class="icon-styled"><i class="bx bx-file"></i></div><div class="text-styled"><strong>Chapters:</strong> 120</div></div></li>
+                            <li><div class="line"><div class="icon-styled"><i class="bx bx-bell"></i></div><div class="text-styled"><strong>Views:</strong></div></div></li>
+                            <li><div class="line"><div class="icon-styled"><i class="bx bx-chevron-left"></i></div><div class="text-styled"><strong>Status:</strong></div></div></li>
+                            <li><div class="line"><div class="icon-styled"><i class="bx bx-crown"></i></div><div class="text-styled"><strong>Ratings:</strong></div></div></li>
+                            <li><div class="line"><div class="icon-styled"><i class="bx bx-crown"></i></div><div class="btn btn-primary">Bookmark</button></div></div></li>
+                        </ul>
+                        <hr>
+                        <h5>Description</h5>
+                        <p id="description" class="card-text description-content">This manga follows the story of a young adventurer in a fantastical world. As they explore new lands and face challenges, they encounter friends and foes alike, ultimately searching for their true destiny.</p>
+                        <div id="toggle-text" class="toggle-text" onclick="toggleSwitch()">Show more</div>
+                        <a href="#" class="btn btn-primary">Read Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <div class ="card shadow mb-3">
+    <div class="chapter-display mt-5 mb-3">
+       <div class="chapter-text"><b>Chapters<span class="text-muted"><sup>(5)</sup></span></b></div>
+        <div id="toggle-square" class="toggle-square" onclick="toggleChapter()">+</div>
+    </div>
+     <div id="chapterTable" class="chapter-table table-responsive mb-2">
+    <div class="chapter-table-wrapper ">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Chapter 1: The Beginning</td>
+                                <td class="text-right">3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>Chapter 2: The Journey</td>
+                            </tr>
+                            <tr>
+                                <td>Chapter 3: The Encounter</td>
+                            </tr>
+                            <tr>
+                                <td>Chapter 4: The Battle</td>
+                            </tr>
+                            <tr>
+                                <td>Chapter 5: The Resolution</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+     </div>
+     <div class="chapter-display mt-2 mb-3">
+        <div class="chapter-text"><b>Comment</b><span class="text-muted"><sup>(0)</sup></span></div>
+        <div class="toggle-square" id="comment-toggle-square">+</div>
+     </div>
+       </div>
+        <!-- Related Manga or Additional Info -->
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                Related Manga
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="#">Related Manga 1</a></li>
+                    <li class="list-group-item"><a href="#">Related Manga 2</a></li>
+                    <li class="list-group-item"><a href="#">Related Manga 3</a></li>
+                </ul>
+            </div>
+        </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded",()=>{
+     var description=document.getElementById("description");
+     var toggleText=document.getElementById("toggle-text");
+     if(description.scrollHeight>description.clientHeight)
+     {
+      toggleText.style.display="block";       
+     }
+    })
+
+    var toggleSwitch=()=>
+    {
+   var description=document.getElementById("description");
+   var toggleText= document.getElementById("toggle-text");
+   if(description.classList.contains("description-content"))
+   {
+    description.classList.remove("description-content");
+    toggleText.textContent="Show less";    
+   }
+   else
+   {
+    description.classList.add("description-content");
+    toggleText.textContent="Show more";
+   }
+ }
+
+    var toggleChapter=()=>
+    {
+    var chapterTable=document.getElementById("chapterTable");
+    var toggleSquare=document.getElementById("toggle-square");
+    if(toggleSquare.textContent==="+")
+    {
+        toggleSquare.textContent="-";
+        chapterTable.style.display="block";
+    }
+    else{
+        toggleSquare.textContent="+";
+        chapterTable.style.display="none";
+    }
+    }
+</script>

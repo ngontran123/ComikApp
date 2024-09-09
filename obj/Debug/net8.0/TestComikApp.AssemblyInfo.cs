@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestComikApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1957c93a69a0af9957b317b5537ac1d1d5d5845")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0260d0c0b0c49441aa43781ae719d528bd235de8")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestComikApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestComikApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
