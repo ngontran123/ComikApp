@@ -538,9 +538,6 @@ D:\Comikapp\ComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\.eslintrc.json
 D:\Comikapp\ComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\.prettierrc.json
 D:\Comikapp\ComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\package-lock.json
 D:\Comikapp\ComikApp\bin\Debug\net8.0\sneat_template\sneat-1.0.0\package.json
-D:\Comikapp\ComikApp\bin\Debug\net8.0\TestComikApp.Test\obj\Debug\net8.0\TestComikApp.Test.sourcelink.json
-D:\Comikapp\ComikApp\bin\Debug\net8.0\TestComikApp.Test\obj\project.assets.json
-D:\Comikapp\ComikApp\bin\Debug\net8.0\TestComikApp.Test\obj\TestComikApp.Test.csproj.nuget.dgspec.json
 D:\Comikapp\ComikApp\bin\Debug\net8.0\.playwright\node\win32_x64\node.exe
 D:\Comikapp\ComikApp\bin\Debug\net8.0\.playwright\node\LICENSE
 D:\Comikapp\ComikApp\bin\Debug\net8.0\.playwright\package\api.json

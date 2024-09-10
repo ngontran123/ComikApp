@@ -392,3 +392,111 @@ box-sizing: border-box;
 background-color: #3d423b !important ;
 border:1px solid black !important;
 }
+
+.commentTable
+{
+  display: none;
+}
+
+.list-comment
+{
+  width: 100% !important;
+  max-height: 200px !important;
+  overflow-y: scroll !important;
+  border-radius: 0 0 3px 3px !important;
+  display: none;
+}
+
+.comment-header
+{
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 11px;
+  margin: 0;
+  padding:8px;
+  color: #a358b0;
+  border: 0;
+}
+
+.list-user
+{
+ margin:0;
+ padding:0;
+ list-style: none;
+}
+
+.list-user-detail
+{
+  font-weight: 500;
+  gap:15px;
+  display: flex;
+  padding:10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.list-user-detail:hover
+{
+background-color: #a358b0;
+color:white;
+}
+
+.search-suggestion
+{
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #a358b0;
+}
+
+.avatar-margin
+{
+  margin-right: 20px;
+}
+
+
+
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  right: 0;
+  z-index: 1000;
+  border: 1px solid #ddd;
+  background-color: white;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  max-height:150px;
+}
+
+
+.search-item img 
+{
+  width:38px;
+  height: auto;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.search-item:hover {
+  background-color: #a358b0;
+  color: #fff;
+}
