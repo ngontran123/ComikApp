@@ -59,8 +59,96 @@
      </div>
      <div class="chapter-display mt-2 mb-3">
         <div class="chapter-text"><b>Comment</b><span class="text-muted"><sup>(0)</sup></span></div>
-        <div class="toggle-square" id="comment-toggle-square">+</div>
+        <div class="toggle-square" id="toggle-comment-square" onclick="toggleComment()">+</div>
      </div>
+     <div id="commentTable">
+     <div class="row align-items-start">
+   <div class="col-auto mt-3">
+     <img class="user-img" data-role="user-avatar" src="~/img/avatars/1.png"> 
+   </div>
+   <div class="col">
+      <div class="comment-area mt-2 mb-3">
+        <textarea id="comment-box" placeholder="Start your discussion here..."></textarea>
+     <div class="d-flex justify-content-between align-items-sm-center">
+        <div class="text-format-buttons">
+            <button id="gif-btn" class="text-muted d-none d-md-inline-block"><i class="bx bx-folder"></i></button>
+            <button id="image-btn" class="text-muted d-none d-md-inline-block"><i class="bx bx-file"></i></button>
+            <button id="bold-btn" onclick="formatText('Bold')" class="text-muted"><b>B</b></button>
+            <button id="italic-btn" onclick="formatText('Italic')" class="text-muted"><i>I</i></button>
+            <button id="underline-btn" class="text-muted" onclick="formatText('Underline')"><u>U</u></button>
+            <button id="alpha-btn" class="text-muted d-none d-md-inline-block">@@</button>        
+        </div>
+        <button class="btn btn-primary text-right">Submit</button>
+     </div>
+      </div>
+   </div>
+     </div>
+     <div class="row align-items-start">
+        <div class="d-flex justify-content-end">
+        <div class="filter-content">
+            <a href="#">Newest</a>
+            <a href="#">Oldest</a>
+        </div>
+        </div>
+     </div>
+     
+     <div class="row">
+    <div class="comment-list">
+        <div class="comment d-flex align-items-start mb-3">
+            <div class="comment-avatar">
+            <img src="~/img/avatars/1.png" alt="comment-avatar" class="comment-avatar-radius img-fluid">
+            </div>
+        <div class="comment-content">
+        <div class="d-flex flex-column">
+            <strong class="username">Username</strong>
+            <span class="text-muted">3 days ago</span>
+        </div>
+        <p class="comment-text">This manga is so fucking</p>
+        <div class="mt-3">
+            <a href="#" class="comment-action"><i class="fa fa-thumbs-up"></i><span class="num-votes">5</span></a>
+            <a href="#" class="comment-action"><i class="fa fa-thumbs-down"></i><span class="num-votes">6</a>
+            <a href="#" class="comment-action"><i class="fa fa-reply"></i><span class="num-votes">Reply</span></a>
+        </div>
+        </div>
+        </div>
+     <div class="comment d-flex align-items-start mb-3">
+            <div class="comment-avatar">
+            <img src="~/img/avatars/1.png" alt="comment-avatar" class="comment-avatar-radius img-fluid">
+            </div>
+        <div class="comment-content">
+        <div class="d-flex flex-column">
+            <strong class="username">Username</strong>
+            <span class="text-muted">3 days ago</span>
+        </div>
+        <p class="comment-text">This manga is so fucking</p>
+        <div class="mt-3">
+            <a href="#" class="comment-action"><i class="fa fa-thumbs-up"></i><span class="num-votes">5</span></a>
+            <a href="#" class="comment-action"><i class="fa fa-thumbs-down"></i><span class="num-votes">6</a>
+            <a href="#" class="comment-action"><i class="fa fa-reply"></i><span class="num-votes">Reply</span></a>
+        </div>
+        </div>
+        </div>
+        <div class="comment d-flex align-items-start mb-3">
+            <div class="comment-avatar">
+            <img src="~/img/avatars/1.png" alt="comment-avatar" class="comment-avatar-radius img-fluid">
+            </div>
+        <div class="comment-content">
+        <div class="d-flex flex-column">
+            <strong class="username">Username</strong>
+            <span class="text-muted">3 days ago</span>
+        </div>
+        <p class="comment-text">This manga is so fucking</p>
+        <div class="mt-3">
+            <a href="#" class="comment-action"><i class="fa fa-thumbs-up"></i><span class="num-votes">5</span></a>
+            <a href="#" class="comment-action"><i class="fa fa-thumbs-down"></i><span class="num-votes">6</a>
+            <a href="#" class="comment-action"><i class="fa fa-reply"></i><span class="num-votes">Reply</span></a>
+        </div>
+        </div>
+        </div>
+          
+    </div>
+     </div>
+       </div>
        </div>
         <!-- Related Manga or Additional Info -->
         <div class="card shadow">
@@ -75,7 +163,7 @@
                 </ul>
             </div>
         </div>
-</div>
+       </div>
 <script>
     document.addEventListener("DOMContentLoaded",()=>{
      var description=document.getElementById("description");
@@ -93,7 +181,7 @@
    if(description.classList.contains("description-content"))
    {
     description.classList.remove("description-content");
-    toggleText.textContent="Show less";    
+    toggleText.textContent="Show less";        
    }
    else
    {
@@ -101,6 +189,7 @@
     toggleText.textContent="Show more";
    }
  }
+    
 
     var toggleChapter=()=>
     {
@@ -115,5 +204,68 @@
         toggleSquare.textContent="+";
         chapterTable.style.display="none";
     }
+    }
+
+    var toggleComment=()=>{
+        var toggleCommentSquare=document.getElementById("toggle-comment-square");
+        var commentTable = document.getElementById("commentTable");
+        if(toggleCommentSquare.textContent==="+")
+        {
+        toggleCommentSquare.textContent="-";
+        commentTable.style.display="block";
+        }
+        else
+        {
+            toggleCommentSquare.textContent="+";
+            commentTable.style.display="none";
+        }    
+    }
+
+    var formatText=(value)=>
+    {
+     var text_area=document.getElementById("comment-box");
+     var text_start=text_area.selectionStart;
+     var text_end=text_area.selectionEnd;
+     var bold_btn=document.getElementById("bold-btn");
+     var italic_btn=document.getElementById("italic-btn");
+     var underlined_btn=document.getElementById("underline-btn");
+    switch(value)
+    {
+     case "Bold":
+     {
+        if(text_area.style.fontWeight==="bold")
+        {    bold_btn.classList.remove("active");
+            text_area.style.fontWeight="normal"}
+        else
+        {bold_btn.classList.add("active");
+         text_area.style.fontWeight="bold";
+        }
+        break;
+     }
+    case "Italic":
+    {
+     if(text_area.style.fontStyle==="italic")
+     {  italic_btn.classList.remove("active");
+        text_area.style.fontStyle="normal";
+     }
+     else{
+        italic_btn.classList.add("active");
+        text_area.style.fontStyle="italic";
+     }
+     break;
+    }
+    case "Underline":
+    {
+     if(text_area.style.textDecoration==="underline")
+     {   underlined_btn.classList.remove("active");
+        text_area.style.textDecoration="none";
+     }
+     else{
+        underlined_btn.classList.add("active");
+        text_area.style.textDecoration="underline";
+     }
+     break;
+    }
+     }
     }
 </script>
