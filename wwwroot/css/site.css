@@ -174,11 +174,10 @@ transform: translateX(-50%);
 {
   transform-style: preserve-3d;
   flex-shrink: 0;
-  width: 97px !important;
+  width: 118px !important;
   height: 100%;
   position: relative;
   margin-right: 3px;
-  position: relative;
 }
 }
 .comik-avatar
