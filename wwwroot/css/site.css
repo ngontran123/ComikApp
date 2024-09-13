@@ -93,6 +93,7 @@ body
 .pagination-container .page-list
 {
   display: flex;
+  align-items: center;
 }
 
 .pagination-container .page-item
@@ -168,6 +169,14 @@ transform: translateX(-50%);
  font-weight: 700;
  display: none;
  margin-bottom:10px;
+}
+
+.pagination-container .page-list
+{
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+  margin-bottom:5px;
 }
 
 .swiper-slide
@@ -629,3 +638,115 @@ color:white;
 {
  right: 15px;
 }
+
+.gif-container
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  border: 2px solid rgba(60, 78, 110, .18);;
+}
+
+.search-gif
+{
+  width: 100%;
+  box-sizing: border-box;
+  padding:12px 10px 8px;
+}
+
+.gif-input
+{
+  width: 100%;
+  font-size: 100%;
+  display: block;
+  white-space: normal;
+  border-radius: 5px;
+  min-height: 30px;
+  height: auto;
+  margin:0;
+  border:2px solid rgba(60, 78, 110, .18);
+  box-sizing: border-box;
+  outline: none;
+  padding:2px 8px;
+  line-height: normal;
+}
+
+.gif-list
+{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 400px;
+  padding:5px 10px;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+
+
+.gif-item
+{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+@media only screen and (min-width:481px) {
+  .gif-list
+  {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    max-height: 800px;
+    padding:5px 10px;
+    overflow-y: scroll;
+    width: 100%;
+  }
+  
+}
+.img-gif:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background: #2a2e2e;
+}
+.img-gif
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid white;
+  width: 100%;
+  height: 100%;
+  background: #2a2e2e;
+}
+
+.img-gif:hover
+{
+border:5px solid #a358b0;
+}
+
+.gif-title
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-shadow: 2px 2px #2a2e2e;
+    text-align: center;
+}
+
