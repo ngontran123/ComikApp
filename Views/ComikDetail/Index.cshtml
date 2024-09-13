@@ -68,10 +68,11 @@
    </div>
    <div class="col">
       <div class="comment-area mt-2 mb-1">
-        <textarea id="comment-box" placeholder="Start your discussion here..."></textarea>
+        <div class="content-edit" id="content-edit" contenteditable="true" data-placeholder="Start your discussion here..." onkeyup="reAddPlaceHolder()"></div>
+        @*<textarea id="comment-box" placeholder="Start your discussion here..."></textarea>*@
      <div class="d-flex justify-content-between align-items-sm-center">
         <div class="text-format-buttons">
-            <button id="gif-btn" class="text-muted d-none d-md-inline-block"><i class="bx bx-folder"></i></button>
+            <button id="gif-btn" class="text-muted d-none d-md-inline-block" onclick="formatText('GIF')"><i class="bx bx-folder"></i></button>
             <button id="image-btn" class="text-muted d-none d-md-inline-block"><i class="bx bx-file"></i></button>
             <button id="bold-btn" onclick="formatText('Bold')" class="text-muted"><b>B</b></button>
             <button id="italic-btn" onclick="formatText('Italic')" class="text-muted"><i>I</i></button>
@@ -107,82 +108,82 @@
             </li>
         </ul>
        </div>
-       <div class="gif-container">
+       <div class="gif-container" id="gif-container">
         <div class="search-gif">
-            <input type="text" class="gif-input" placeholder="Search your gif...">
+            <input type="text" class="gif-input" placeholder="Search your gif..." onkeyup="searchGify(this.value)">
         </div>
         <div class="gif-list">
-            <div class="gif-item">
-                <div class="img-gif">
-                    <img src="https://media.giphy.com/media/WsV5AoDeKePw4/200w_d.gif" style="width:250px;height:115px">
+            <div class="gif-item" id="gif-item">
+                <div class="img-gif" data-meme-type="trending" id="img-container" onclick="searchGify('Trending')">
+                    <img src="https://media.giphy.com/media/WsV5AoDeKePw4/200w_d.gif" style="width:250px;height:115px" id="img-gif">
                 <div class="gif-title">
                     Trending
                 </div>
                 </div>
-                <div class="img-gif">
-                    <img src="https://media.giphy.com/media/5VKbvrjxpVJCM/200w_d.gif" style="width:250px;height:200px">
+                <div class="img-gif"data-meme-type="omg" id="img-container" onclick="searchGify('OMG')">
+                    <img src="https://media.giphy.com/media/5VKbvrjxpVJCM/200w_d.gif" style="width:250px;height:200px" id="img-gif">
                 <div class="gif-title">
                     OMG
                 </div>
                 </div>
-                 <div class="img-gif">
-                    <img src="https://media.giphy.com/media/z5WtAAaFpnIgU/200w_d.gif" style="width:250px;height:200px">
+                 <div class="img-gif" data-meme-type="oh no" id="img-container" onclick="searchGify('Oh no')">
+                    <img src="https://media.giphy.com/media/z5WtAAaFpnIgU/200w_d.gif" style="width:250px;height:200px" id="img-gif">
                 <div class="gif-title">
                     Oh No
                 </div>
                 </div>
-                   <div class="img-gif">
-                    <img src="https://media.giphy.com/media/58FMN3DmsmYta2m0aB/200w_d.gif" style="width:250px;height:200px">
+                   <div class="img-gif" data-meme-type="slow slap" id="img-container" onclick="searchGify('Slow Slap')">
+                    <img src="https://media.giphy.com/media/58FMN3DmsmYta2m0aB/200w_d.gif" style="width:250px;height:200px" id="img-gif">
                 <div class="gif-title">
                     Slow Slap
                 </div>
                 </div>
-                   <div class="img-gif">
-                    <img src="https://media.giphy.com/media/Xf7g5BjIIMun8fR14k/200w_d.gif" style="width:250px;height:200px">
+                   <div class="img-gif" data-meme-type="love" id="img-container" onclick="searchGify('Love')">
+                    <img src="https://media.giphy.com/media/Xf7g5BjIIMun8fR14k/200w_d.gif" style="width:250px;height:200px" id="img-gif">
                 <div class="gif-title">
              Love
                 </div>
                 </div>
-                   <div class="img-gif">
-                    <img src="https://media.giphy.com/media/sbwjM9VRh0mLm/200w_d.gif" style="width:250px;height:200px">
+                   <div class="img-gif" data-meme-type="eye roll" id="img-container" onclick="searchGify('Eye roll')">
+                    <img src="https://media.giphy.com/media/sbwjM9VRh0mLm/200w_d.gif" style="width:250px;height:200px" id="img-gif">
                 <div class="gif-title">
                     Eye roll
                 </div>
                 </div>
             </div>
              <div class="gif-item">
-                <div class="img-gif">
-                    <img src="https://media.giphy.com/media/fnK0jeA8vIh2QLq3IZ/200w_d.gif" style="width:300px;height:200px">
+                <div class="img-gif" data-meme-type="applaude" id="img-container" onclick="searchGify('Applaude')">
+                    <img src="https://media.giphy.com/media/fnK0jeA8vIh2QLq3IZ/200w_d.gif" style="width:300px;height:200px" id="img-gif">
                 <div class="gif-title">
               Applaude
                 </div>
                 </div>
-                <div class="img-gif">
-                    <img src="https://media.giphy.com/media/3og0ILzGlzG26yNINq/200w_d.gif" style="width:300px;height:200px">
+                <div class="img-gif" data-meme-type="agree" id="img-container" onclick="searchGify('Agree')">
+                    <img src="https://media.giphy.com/media/3og0ILzGlzG26yNINq/200w_d.gif" style="width:300px;height:200px" id="img-gif">
                 <div class="gif-title">
                     Agree
                 </div>
                 </div>
-                 <div class="img-gif">
-                    <img src="https://media.giphy.com/media/mgqefqwSbToPe/200w_d.gif" style="width:300px;height:200px">
+                 <div class="img-gif" data-meme-type="ok" id="img-container" onclick="searchGify('Ok')">
+                    <img src="https://media.giphy.com/media/mgqefqwSbToPe/200w_d.gif" style="width:300px;height:200px" id="img-gif">
                 <div class="gif-title">
                     Oh OK
                 </div>
                 </div>
-                   <div class="img-gif">
-                    <img src="https://media.giphy.com/media/j5QcmXoFWl4Q0/200w_d.gif" style="width:300px;height:200px">
+                   <div class="img-gif" data-meme-type="thumb up" id="img-container" onclick="searchGify('Thumb up')">
+                    <img src="https://media.giphy.com/media/j5QcmXoFWl4Q0/200w_d.gif" style="width:300px;height:200px" id="img-gif">
                 <div class="gif-title">
                     Thumbs Up
                 </div>
                 </div>
-                   <div class="img-gif">
-                    <img src="https://media.giphy.com/media/KUrgyFtn9bQNW/200w_d.gif" style="width:300px;height:200px">
+                   <div class="img-gif" data-meme-type="thumb down" id="img-container" onclick="searchGify('Thumb down')">
+                    <img src="https://media.giphy.com/media/KUrgyFtn9bQNW/200w_d.gif" style="width:300px;height:200px" id="img-gif">
                 <div class="gif-title">
                Thumbs down
                 </div>
                 </div>
-                   <div class="img-gif">
-                    <img src="https://media.giphy.com/media/QAsBwSjx9zVKoGp9nr/200w_d.gif" style="width:300px;height:200px">
+                   <div class="img-gif" data-meme-type="thank you" id="img-container" onclick="searchGify('Thank you')">
+                    <img src="https://media.giphy.com/media/QAsBwSjx9zVKoGp9nr/200w_d.gif" style="width:300px;height:200px" id="img-gif">
                 <div class="gif-title">
                     Thank you
                 </div>
@@ -311,7 +312,8 @@
         toggleSquare.textContent="-";
         chapterTable.style.display="block";
     }
-    else{
+    else
+    {
         toggleSquare.textContent="+";
         chapterTable.style.display="none";
     }
@@ -332,12 +334,27 @@
         }    
     }
      
+    var reAddPlaceHolder=()=>
+    {
+      var text_content=document.querySelector('[contenteditable]').textContent;
+      if(text_content.trim()==='')
+      {
+        text_content.innerHTML='';
+      }
+      var bold_btn=document.getElementById("bold-btn");
+      if(bold_btn.classList.contains('active'))
+      {
+        document.execCommand('bold');
+        bold_btn.classList.remove('active');
+      }
+    }
+
      var selectUserTag=(username)=>
      {
-     var text_area= document.getElementById("comment-box");
+     var text_area= document.getElementById("content-edit");
      var list_comment = document.getElementById("list-comment");
      var alpha_btn = document.getElementById("alpha-btn");
-     text_area.value+=username.bold();
+     text_area.innerHTML+=`<strong>@@${username}</strong>`;
      alpha_btn.classList.remove("active");
      list_comment.style.display="none";
      }
@@ -345,50 +362,57 @@
 
     var formatText=(value)=>
     {
-     var text_area=document.getElementById("comment-box");
-     var text_start=text_area.selectionStart;
-     var text_end=text_area.selectionEnd;
+     var text_area=document.getElementById("content-edit");
+     
      var bold_btn=document.getElementById("bold-btn");
      var italic_btn=document.getElementById("italic-btn");
      var underlined_btn=document.getElementById("underline-btn");
      var alpha_btn = document.getElementById("alpha-btn");
      var list_comment = document.getElementById("list-comment");
+     var gif_btn=document.getElementById("gif-btn");
+     var gif_container = document.getElementById('gif-container');
+
     switch(value)
     {
      case "Bold":
      {
-        if(text_area.style.fontWeight==="bold")
-        {    bold_btn.classList.remove("active");
-            text_area.style.fontWeight="normal"}
+        if(!bold_btn.classList.contains("active"))
+        {   
+        bold_btn.classList.add("active");
+        }
         else
-        {bold_btn.classList.add("active");
-         text_area.style.fontWeight="bold";
+        {
+             bold_btn.classList.remove("active");
         }
         break;
      }
     case "Italic":
     {
-     if(text_area.style.fontStyle==="italic")
-     {  italic_btn.classList.remove("active");
-        text_area.style.fontStyle="normal";
+     if(!italic_btn.classList.contains("active"))
+     {  italic_btn.classList.add("active");
+        document.execCommand('italic',true,null);
+        text_area.focus();
      }
      else
      {
-        italic_btn.classList.add("active");
-        text_area.style.fontStyle="italic";
+        italic_btn.classList.remove("active");
+        document.execCommand('italic',false,null);
+        text_area.focus();
      }
      break;
     }
     case "Underline":
     {
-     if(text_area.style.textDecoration==="underline")
-     {   underlined_btn.classList.remove("active");
-        text_area.style.textDecoration="none";
+     if(!underlined_btn.classList.contains("active"))
+     {   underlined_btn.classList.add("active");
+        document.execCommand('underline',true,null);
+        text_area.focus();
      }
      else
      {
-        underlined_btn.classList.add("active");
-        text_area.style.textDecoration="underline";
+        underlined_btn.classList.remove("active");
+        document.execCommand('underline',false,null);
+        text_area.focus();
      }
      break;
     }
@@ -405,6 +429,130 @@
    }
    break;
     }
+    case "GIF":{
+        if(!gif_btn.classList.contains("active"))
+        {
+        gif_btn.classList.add("active");
+        gif_container.style.display='block';
+        }
+        else
+        {   
+            gif_btn.classList.remove("active");
+            gif_container.style.display='none';
+        }
+        break;
+    }
      }
     }
+
+   const pushDataToDom=(data)=>
+   {
+  try{
+    if(data.length==0)
+    { 
+      var list_default_gif=['https://media.giphy.com/media/WsV5AoDeKePw4/200w_d.gif','https://media.giphy.com/media/5VKbvrjxpVJCM/200w_d.gif','https://media.giphy.com/media/z5WtAAaFpnIgU/200w_d.gif','https://media.giphy.com/media/58FMN3DmsmYta2m0aB/200w_d.gif','https://media.giphy.com/media/Xf7g5BjIIMun8fR14k/200w_d.gif','https://media.giphy.com/media/sbwjM9VRh0mLm/200w_d.gif','https://media.giphy.com/media/fnK0jeA8vIh2QLq3IZ/200w_d.gif','https://media.giphy.com/media/3og0ILzGlzG26yNINq/200w_d.gif','https://media.giphy.com/media/mgqefqwSbToPe/200w_d.gif','https://media.giphy.com/media/j5QcmXoFWl4Q0/200w_d.gif','https://media.giphy.com/media/KUrgyFtn9bQNW/200w_d.gif','https://media.giphy.com/media/QAsBwSjx9zVKoGp9nr/200w_d.gif'];
+      var list_default_slogan=['Trending','OMG','Oh No','Slow Slap','Love','Eye Roll','Applaude','Agree','Oh OK','Thumbs Up','Thumbs Down','Thank You'];
+      var img_frames=document.querySelectorAll('#img-container');
+ var child_node_count=img_frames[0].children.length;      
+   if(child_node_count>=2)
+      {
+      return;
+      }
+      const new_style=document.createElement('style');
+
+      new_style.innerHTML='.img-gif::before{content: "" !important;display: block !important;position:absolute !important;top: 0 !important;left:0 !important;width:100% !important;height:100% !important;opacity: 0.6 !important;background: #2a2e2e; !important}';
+     
+      for(let i=0;i<12;i++)
+      {
+      var first_child_img=img_frames[i].children[0];
+      var create_second_child=document.createElement('div');
+      create_second_child.className='gif-title';
+      create_second_child.innerText=list_default_slogan[i];
+      first_child_img.src=list_default_gif[i];
+      img_frames[i].appendChild(new_style);
+      img_frames[i].appendChild(create_second_child);
+      }
+    }
+    @* else{
+    var img_frames=document.querySelectorAll("#img-container");
+    const new_style=document.createElement('style');
+    new_style.innerHTML=`.img-gif::before{content:none !important;}`;
+     for(let i=0;i<data.length;i++)
+    {   var child_node_count=img_frames[i].childNodes.length;
+       var first_child_img=img_frames[i].children[0];
+       var second_child=child_node_count==2?img_frames[i].children[1]:null;
+        var url=data[i].images.original.url;
+        img_frames[i].appendChild(new_style);
+     if(second_child!=null)
+     {
+        img_frames[i].removeChild(second_child);
+     }
+        first_child_img.src=url;     
+    } 
+    } *@
+    else{
+    var img_frames=document.querySelectorAll("#img-container");
+    const new_style=document.createElement('style');
+    new_style.innerHTML=`.img-gif::before{content:none !important;}`;
+     for(let i=0;i<12;i++)
+    {   var child_node_count=img_frames[i].children.length;
+       var first_child_img=img_frames[i].children[0];
+       var second_child=child_node_count==2?img_frames[i].children[1]:null;
+        var url='https://media.giphy.com/media/WsV5AoDeKePw4/200w_d.gif';
+        img_frames[i].appendChild(new_style);
+     if(second_child!=null)
+     {
+        img_frames[i].removeChild(second_child);
+     }
+        first_child_img.src=url;
+    } 
+  }
+    }
+    @* else{
+         var img_frames=document.querySelectorAll("#img-container");
+    const new_style=document.createElement('style');
+    new_style.innerHTML=`.img-gif::before{content:none !important;}`;
+     for(let i=0;i<data.length;i++)
+    {   var child_node_count=img_frames[i].children.length;
+       var first_child_img=img_frames[i].children[0];
+       var second_child=child_node_count==2?img_frames[i].children[1]:null;
+        var url='https://media.giphy.com/media/WsV5AoDeKePw4/200w_d.gif';
+        img_frames[i].appendChild(new_style);
+     if(second_child!=null)
+     {
+        img_frames[i].removeChild(second_child);
+     }
+        first_child_img.src=url;     
+    }  *@
+    
+    catch(ex)
+    {
+
+    }
+   } 
+  const searchGify=(searchTheme)=>
+  {  
+    var list_data_object=[];
+
+    if(searchTheme.length==0)
+    {
+     pushDataToDom(list_data_object); 
+    }
+    @* var api_key="73KpRDQmZmdveTBtswvZ2Zt4pygEMCZ5";
+    let gify_url=`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchTheme}&limit=12&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
+    var gify_call_request=new XMLHttpRequest();
+    gify_call_request.open("GET",gify_url);
+    gify_call_request.send();
+    gify_call_request.addEventListener("load",(data)=>
+    {
+    var gify_data=data.target.response;
+    var gify_object = JSON.parse(gify_data);
+    var data_object=gify_object.data;
+    data_object.forEach((value)=>{
+     list_data_object.push(value);
+    });
+    pushDataToDom(list_data_object); 
+    }); *@
+    pushDataToDom(searchTheme);
+  }
 </script>
