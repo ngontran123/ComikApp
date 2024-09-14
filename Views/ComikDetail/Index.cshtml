@@ -68,15 +68,17 @@
    </div>
    <div class="col">
       <div class="comment-area mt-2 mb-1">
-        <div class="content-edit" id="content-edit" contenteditable="true" data-placeholder="Start your discussion here..." onkeyup="reAddPlaceHolder()"></div>
+        <div class="content-edit" id="content-edit" contenteditable="true" data-placeholder="Start your discussion here..." onkeypress="reAddPlaceHolder()"></div>
         @*<textarea id="comment-box" placeholder="Start your discussion here..."></textarea>*@
      <div class="d-flex justify-content-between align-items-sm-center">
         <div class="text-format-buttons">
             <button id="gif-btn" class="text-muted d-none d-md-inline-block" onclick="formatText('GIF')"><i class="bx bx-folder"></i></button>
-            <button id="image-btn" class="text-muted d-none d-md-inline-block"><i class="bx bx-file"></i></button>
+            <button id="image-btn" class="text-muted d-none d-md-inline-block"><input type="file" id="imageChange" accept="image/*" style="display:none;"><i class="bx bx-file"></i></button>
             <button id="bold-btn" onclick="formatText('Bold')" class="text-muted"><b>B</b></button>
             <button id="italic-btn" onclick="formatText('Italic')" class="text-muted"><i>I</i></button>
             <button id="underline-btn" class="text-muted" onclick="formatText('Underline')"><u>U</u></button>
+        <button id="strike-through-btn" class="text-muted" onclick="formatText('StrikeThrough')"><s>S</s></button>
+
             <button id="alpha-btn" class="text-muted d-none d-md-inline-block" onclick="formatText('Alpha')">@@</button>
           </div>
         <button class="btn btn-primary text-right">Submit</button>
@@ -114,7 +116,7 @@
         </div>
         <div class="gif-list">
             <div class="gif-item" id="gif-item">
-                <div class="img-gif" data-meme-type="trending" id="img-container" onclick="searchGify('Trending')">
+                <div class="img-gif" data-meme-type="trending" id="img-container" onclick="pushGifToDom('https://media.giphy.com/media/WsV5AoDeKePw4/200w_d.gif')">
                     <img src="https://media.giphy.com/media/WsV5AoDeKePw4/200w_d.gif" style="width:250px;height:115px" id="img-gif">
                 <div class="gif-title">
                     Trending
@@ -164,7 +166,7 @@
                     Agree
                 </div>
                 </div>
-                 <div class="img-gif" data-meme-type="ok" id="img-container" onclick="searchGify('Ok')">
+                 <div class="img-gif" data-meme-type="ok" id="img-container" onclick="searchGify('Okay')">
                     <img src="https://media.giphy.com/media/mgqefqwSbToPe/200w_d.gif" style="width:300px;height:200px" id="img-gif">
                 <div class="gif-title">
                     Oh OK
@@ -284,8 +286,30 @@
      {
       toggleText.style.display="block";       
      }
-    })
+    });
 
+    document.getElementById("image-btn").addEventListener('click',()=>{
+        document.getElementById('imageChange').click();
+    })
+   
+   document.getElementById('imageChange').addEventListener('change',(event)=>{
+     var img_src=event.target.files[0];
+     if(img_src)
+     {
+        const reader = new FileReader();
+        reader.onload=(e)=>{
+         const img_ele=document.createElement('img');
+          img_ele.src=e.target.result;
+          img_ele.style.width='150px';
+          img_ele.style.height='auto';
+
+          var text_area=document.getElementById("content-edit");
+          text_area.appendChild(img_ele);
+        }
+        reader.readAsDataURL(img_src);
+     }
+   })
+    
     var toggleSwitch=()=>
     {
    var description=document.getElementById("description");
@@ -334,19 +358,80 @@
         }    
     }
      
-    var reAddPlaceHolder=()=>
-    {
-      var text_content=document.querySelector('[contenteditable]').textContent;
+      document.querySelector('[contenteditable]').addEventListener('input',(event)=>{
+        
+       var text_content_node=document.querySelector('[contenteditable]');
+      var text_content=text_content_node.textContent;
       if(text_content.trim()==='')
       {
         text_content.innerHTML='';
       }
-      var bold_btn=document.getElementById("bold-btn");
-      if(bold_btn.classList.contains('active'))
+      });
+
+
+    var reAddPlaceHolder=()=>
+    {
+      var text_content_node=document.querySelector('[contenteditable]');
+      var text_content=text_content_node.textContent;
+      if(text_content.trim()==='')
       {
-        document.execCommand('bold');
-        bold_btn.classList.remove('active');
+        text_content.innerHTML='';
       }
+       @* if (event.key === "Backspace") {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+
+        if (range.startOffset > 0) 
+        {
+            const node = range.startContainer;
+            const charBeforeCaret = node.textContent[range.startOffset - 1];
+
+            // Check if the node is inside <strong> or <b>
+            let isBold = false;
+            let currentNode = node;
+            
+            while (currentNode) 
+            {
+                if (currentNode.nodeName != "STRONG" || currentNode.nodeName != "B") 
+                {
+                    alert("hre");
+                    isBold = true;
+                    break;
+                }
+                currentNode = currentNode.parentNode;
+            }
+
+        }
+    } *@
+    @* const regex = /^[a-zA-Z0-9`~!@@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\s]$/;
+    const key_down=event.key;
+      var bold_btn=document.getElementById("bold-btn");
+     if(regex.test(key_down))
+     {
+    const selection=window.getSelection();
+       const range=selection.getRangeAt(0);
+      if(bold_btn.classList.contains('active') && key_down !=" ")
+      {event.preventDefault();
+      
+       const strong_ele=document.createElement("strong");
+       strong_ele.textContent=event.key;
+       range.deleteContents();
+       range.insertNode(strong_ele);
+       range.setStartAfter(strong_ele);
+      
+      }
+      else if(!bold_btn.classList.contains('active') && key_down !=" ")
+      { event.preventDefault(); 
+       const parentNode = selection.anchorNode.parentNode;
+        const textNode=document.createTextNode(event.key);
+        range.deleteContents();
+        range.insertNode(textNode);
+        range.setStartAfter(textNode);
+      }
+       range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      } *@
     }
 
      var selectUserTag=(username)=>
@@ -363,10 +448,10 @@
     var formatText=(value)=>
     {
      var text_area=document.getElementById("content-edit");
-     
      var bold_btn=document.getElementById("bold-btn");
      var italic_btn=document.getElementById("italic-btn");
      var underlined_btn=document.getElementById("underline-btn");
+     var strike_throught_btn=document.getElementById("strike-through-btn");
      var alpha_btn = document.getElementById("alpha-btn");
      var list_comment = document.getElementById("list-comment");
      var gif_btn=document.getElementById("gif-btn");
@@ -379,10 +464,14 @@
         if(!bold_btn.classList.contains("active"))
         {   
         bold_btn.classList.add("active");
+        document.execCommand('bold',true,null);
+        text_area.focus();
         }
         else
         {
              bold_btn.classList.remove("active");
+             document.execCommand('bold',false,null);
+             text_area.focus();
         }
         break;
      }
@@ -416,6 +505,22 @@
      }
      break;
     }
+    case "StrikeThrough":
+    {
+        if(!strike_throught_btn.classList.contains("active"))
+        {
+            strike_throught_btn.classList.add("active");
+            document.execCommand('strikethrough',true,null);
+            text_area.focus();
+        }
+        else
+        {
+            strike_throught_btn.classList.remove("active");
+            document.execCommand('strikethrough',false,null);
+            text_area.focus();
+        }
+        break;
+    }
   case "Alpha":
     {
    if(!alpha_btn.classList.contains("active"))
@@ -445,6 +550,15 @@
      }
     }
 
+
+  const pushGifToDom=(gif)=>
+  {
+    const text_area=document.getElementById('content-edit');
+    const img_ele=`<img src=${gif} style={width:150px;height:auto;}>`;
+    text_area.innerHTML+=img_ele;
+
+  }
+
    const pushDataToDom=(data)=>
    {
   try{
@@ -473,12 +587,13 @@
       img_frames[i].appendChild(create_second_child);
       }
     }
-    @* else{
+    else
+    {
     var img_frames=document.querySelectorAll("#img-container");
     const new_style=document.createElement('style');
     new_style.innerHTML=`.img-gif::before{content:none !important;}`;
      for(let i=0;i<data.length;i++)
-    {   var child_node_count=img_frames[i].childNodes.length;
+    {  var child_node_count=img_frames[i].children.length;
        var first_child_img=img_frames[i].children[0];
        var second_child=child_node_count==2?img_frames[i].children[1]:null;
         var url=data[i].images.original.url;
@@ -489,8 +604,9 @@
      }
         first_child_img.src=url;     
     } 
-    } *@
-    else{
+    }
+    @* else
+    {
     var img_frames=document.querySelectorAll("#img-container");
     const new_style=document.createElement('style');
     new_style.innerHTML=`.img-gif::before{content:none !important;}`;
@@ -506,7 +622,7 @@
      }
         first_child_img.src=url;
     } 
-  }
+  } *@
     }
     @* else{
          var img_frames=document.querySelectorAll("#img-container");
@@ -527,7 +643,7 @@
     
     catch(ex)
     {
-
+alert(ex.message);
     }
    } 
   const searchGify=(searchTheme)=>
@@ -538,7 +654,7 @@
     {
      pushDataToDom(list_data_object); 
     }
-    @* var api_key="73KpRDQmZmdveTBtswvZ2Zt4pygEMCZ5";
+    var api_key="73KpRDQmZmdveTBtswvZ2Zt4pygEMCZ5";
     let gify_url=`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchTheme}&limit=12&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
     var gify_call_request=new XMLHttpRequest();
     gify_call_request.open("GET",gify_url);
@@ -552,7 +668,7 @@
      list_data_object.push(value);
     });
     pushDataToDom(list_data_object); 
-    }); *@
-    pushDataToDom(searchTheme);
+    });
+    //pushDataToDom(searchTheme);
   }
 </script>
